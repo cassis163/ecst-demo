@@ -1,17 +1,30 @@
 version: '3.5'
 
 services:
-  postgres:
-    container_name: postgres_container
-    image: postgres/15-alpine
+  article-postgres-db:
+    image: postgres:15-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-gorm}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gorm}
-      PGDATA: /data/postgres
+      POSTGRES_DB: ${POSTGRES_DATABASE:-article}
     volumes:
-       - postgres:/data/postgres
+      - ./data/article-postgres-db:/var/lib/postgresql/data
     ports:
       - "9920:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  stock-postgres-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gorm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gorm}
+      POSTGRES_DB: ${POSTGRES_DATABASE:-stock}
+    volumes:
+      - ./data/stock-postgres-db:/var/lib/postgresql/data
+    ports:
+      - "9921:5432"
     networks:
       - postgres
     restart: unless-stopped
@@ -21,4 +34,4 @@ networks:
     driver: bridge
 
 volumes:
-    postgres:
+  postgres:

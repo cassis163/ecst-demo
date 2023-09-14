@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ecst-demo/cassis163/article-service/backend"
 	"ecst-demo/cassis163/article-service/frontend"
 	"log"
 
@@ -14,6 +15,7 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
+	backend.InitBackend(app)
 	frontend.InitWeb(app)
 
 	log.Fatal(app.Listen(":3000"))
