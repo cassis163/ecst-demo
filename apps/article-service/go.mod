@@ -6,6 +6,7 @@ require github.com/gofiber/fiber v1.14.6
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
+	github.com/confluentinc/confluent-kafka-go/v2 v2.2.0 // indirect
 	github.com/gofiber/fiber/v2 v2.49.2 // indirect
 	github.com/gofiber/template v1.8.2 // indirect
 	github.com/gofiber/template/html/v2 v2.0.5 // indirect
